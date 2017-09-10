@@ -15,31 +15,37 @@ class Home extends CI_Controller {
 	}
 	public function register(){
 
-		 $this->template->load('static', 'register');
+		 $this->template->load('static', 'register',[
+          'captcha' => $this->recaptcha->getWidget(), // menampilkan recaptcha
+            'script_captcha' => $this->recaptcha->getScriptTag()
+            ]); // javascript recaptcha ditaruh di head
 	}
 
 
     public function tambah_pegawaidb()
     {
+
         $this->load->model('mtabel_pegawai');
         // 
         $this->form_validation->set_rules('nama', 'nama', 'trim|required');
         $this->form_validation->set_rules('jk', 'jenis kelamin', 'trim|required');
-       // $this->form_validation->set_rules('tanggal', 'tgl', 'trim|required');
+        $this->form_validation->set_rules('tanggal', 'tgl', 'trim|required');
         $this->form_validation->set_rules('alamat', 'alamat', 'trim|required');
         $this->form_validation->set_rules('email', 'email', 'valid_email|required|');
         $this->form_validation->set_rules('hp', 'no handpone', 'numeric|required|');
         $this->form_validation->set_rules('pendidikan', 'pendidikan terakhir', 'trim|required|');
         $this->form_validation->set_rules('pengalaman', 'pengalaman kerja', 'trim|required|');
         $this->form_validation->set_rules('divisi', 'divisi', 'trim|required|');
+        $this->form_validation->set_rules('g-recaptcha-response','Captcha','callback_recaptcha');
+ 
         $recaptcha = $this->input->post('g-recaptcha-response');
         $response = $this->recaptcha->verifyResponse($recaptcha);
 
         if ($this->form_validation->run() == FALSE) {
-            echo json_encode(['hasil'=>'false']);
-            //$this->template->load('static', 'register');
+            
+            $this->template->load('static', 'register');
 
-
+$this->session->set_flashdata('info', '<div class="alert alert-info"><h4>Data gagal dimasukan</h4></div>');
         } else {
             $this->load->library('upload');
             $nmfile = "file_" . time(); //nama file saya beri nama langsung dan diikuti fungsi time
@@ -48,22 +54,18 @@ class Home extends CI_Controller {
             $config['max_size'] = '3072'; //maksimum besar file 3M
             $config['file_name'] = $nmfile; //nama yang terupload nantinya
 
-            $this->upload->initialize($config);
+            $this->upload->initialize($config);  
 
-            // if($_FILES['filefoto']['name'])
-            //{
             if ($this->upload->do_upload('file')) {
             $gbr = $this->upload->data();
-                $this->mtabel_pegawai->tambah($data); //akses model untuk menyimpan ke database
-                $hasil['hasil'] = 'true';
-                echo json_encode($hasil);
-                redirect('home/index'); //jika berhasil maka akan ditampilkan view upload
-                //pesan yang muncul jika terdapat error dimasukkan pada session flashdat
+            $this->mtabel_pegawai->tambah(); //akses model untuk menyimpan ke database    
+            $this->session->set_flashdata('info', '<div class="alert alert-success"><h4>Data berhasil dimasukan</h4></div>');
+            redirect('home/register');
+                        
             } else {
-                $hasil['hasil'] = 'false';
-                 echo json_encode($hasil);
-                redirect('home/register');  //jika gagal maka akan ditampilkan form upload
-
+                $this->session->set_flashdata('info', '<div class="alert alert-info"><h4>Data gagal dimasukan</h4></div>');
+                redirect('home/register');
+              
             }
          }
 

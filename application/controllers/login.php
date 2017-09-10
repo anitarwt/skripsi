@@ -14,9 +14,7 @@ class Login extends CI_Controller
                 redirect('/admin/index');
             }elseif ($this->session->userdata('level') == 'manajer') {
                 redirect('/manajer/index');
-            }elseif ($this->session->userdata('level') == 'staff') {
-                redirect('staff/index');
-        }
+            }
     }
 }
 
@@ -54,9 +52,7 @@ class Login extends CI_Controller
                 redirect('/admin');
             }elseif ($this->session->userdata('level') == 'manajer') {
                 redirect('/manajer');
-            }elseif ($this->session->userdata('level') == 'staff') {
-                redirect('/staff');
-        }
+            }
              }else{
             echo "<script>alert('Gagal login: Cek username, password!');history.go(-1);</script>";
         }

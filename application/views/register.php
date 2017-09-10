@@ -8,17 +8,17 @@
 
         </div>
     
+  
     </div>
    <div class="form-horizontal">
-   <?php echo $this->session->flashdata('info'); ?>
 
  <?php echo form_open_multipart('home/tambah_pegawaidb'); ?>
 
 
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <div class="registrationform">
-          
-      
+         <?php echo $this->session->flashdata('info'); ?>
+
      <?php echo validation_errors(); ?> 
         
                 <legend><p align="center"><i class="fa fa-pencil "></i> Form Registrasi</p></legend>
@@ -118,9 +118,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                     
-                <?php echo $captcha?>
-           
+                      <div class="col-lg-3 col-lg-offset-3">
+                           <?php echo '<div class="g-recaptcha" data-sitekey="6LcfGDAUAAAAACnk6m-IBC0Tm96bgfpKAB3sVmbO"></div>';?>  
+            </div>
                 </div>
 
                 <div class="form-group">
@@ -138,57 +138,4 @@
 
 </div>
 
- <script type="text/javascript">
-  $(document).ready(function() {
-   $("form").submit(function(event){
-   event.preventDefault();
-   //mengambil data dari form
-   var nama_value= $("#nama").val();
-   var jk_value= $("#jk").val();
-   var tanggal_value= $("#tanggal").val();
-   var alamat_value= $("#alamat").val();    
-   var email_value= $("#email").val();
-   var hp_value= $("#hp").val();    
-   var pendidikan_value= $("#pendidikan").val();
-   var pengalaman_value= $("#pengalaman").val();
-   var divisi_value= $("#divisi").val();
-   var file_value= $("#file").val();        
-
-   jQuery.ajax({
-   type: "POST",
-   url: "<?php echo base_url(); ?>"+"home/tambah_pegawaidb",
-   dataType: 'json',
-   //mengirim data dengan type post
-   data: {nama: nama_value, jk : jk_value, tanggal : tanggal_value , alamat : alamat_value, email: email_value,
-   hp: hp_value, pendidikan: pendidikan_value, pengalaman: pengalaman_value, divisi: divisi_value, file: file_value},
-   //menerima result dari controller
-   success: function(res) {
-    if(res.hasil == 'true'){
-     swal({
-      title: "Sukses",
-      text: "Data Di Tambahkan",
-      showConfirmButton: true,
-      confirmButtonColor: '#0760ef',
-      type:"success"
-     },
-     function(){
-       document.getElementById('form').reset();
-     });
-    }
-    if(res.hasil == 'false'){
-     swal({
-      title: "Gagal",
-      text: "Data Gagal Tambahkan",
-      showConfirmButton: true,
-      confirmButtonColor: '#0760ef',
-      type:"error"
-     },
-     function(){
-      
-     });
-    }
-   }
-  });
- });
-});
- </script>
+ 

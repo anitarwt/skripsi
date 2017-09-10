@@ -16,7 +16,7 @@
                 <!-- <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" >-->
           
          
-          <?php echo form_open('admin/tambah_userdb') ?>
+          <?php echo form_open('manajer/tambah_userdb') ?>
            
           <?php echo validation_errors(); ?>       
                 

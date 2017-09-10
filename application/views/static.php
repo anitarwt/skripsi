@@ -15,20 +15,20 @@
         rel='stylesheet' type='text/css' />
     <!-- ============ Add custom CSS here ============ -->
     <link href="<?php echo base_url();?>assets/register/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
     <link href="<?php echo base_url();?>assets/register/css/style.css" rel="stylesheet" type="text/css" />   
     <link href="<?php echo base_url();?>assets/register/css/font-awesome.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.10/sweetalert2.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/alert/sweetalert2.min.css">
+   
 <!--alert success-->
-<script
+<!--<script
   src="https://code.jquery.com/jquery-2.2.4.js"
   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
   crossorigin="anonymous"></script>
  <!--Let browser know website is optimized for mobile-->
- <script src="bower_components/sweetalert2/dist/sweetalert2.min.js"></script> 
+ <!--<script src="bower_components/sweetalert2/dist/sweetalert2.min.js"></script> 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.10/sweetalert2.common.min.js"></script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
- <script type="text/javascript" src="<?php echo base_url(); ?>assets/alert/sweetalert2.js"></script>
+ <script type="text/javascript" src="<?php echo base_url(); ?>assets/alert/sweetalert2.js"></script>-->
 <script src="<?php echo base_url();?>assets/register/js/jquery.js" type="text/javascript"></script>
      <!-- Sweet Alert CSS import-->
 
@@ -38,28 +38,24 @@
 <script src="<?php echo base_url();?>assets/datepicker/development-bundle/ui/jquery.ui.widget.js"></script>
 <script src="<?php echo base_url();?>assets/datepicker/development-bundle/ui/jquery.ui.datepicker.js"></script>
 
+ <script src="https://www.google.com/recaptcha/api.js"></script>
 <script>
  $( document ).ready(function() {
     $("#tanggal").datepicker({ 
-        format: 'yyyy-mm-dd'
+        dateFormat: 'yy-mm-dd'
     });
     $("#tanggal").on("change", function () {
         var fromdate = $(this).val();
        
     });
 });
+
+
     </script>
 
 
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
-        <style>
-            .login-box{
-                width: 300px;
-                margin: auto;
-                margin-top: 100px;
-            }
-        </style>
-        <?php echo $script_captcha; ?>
+    
+       
 
 </head>
 <body>
@@ -84,7 +80,7 @@
         <?php echo $contents; ?>
 
 
-
+      
                     </div>
                     
                     

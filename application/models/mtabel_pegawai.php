@@ -29,8 +29,7 @@ class Mtabel_pegawai extends CI_Model
             'pengalaman_kerja' => $h,
             'divisi' => $i,
             'file' => $j['file_name'],
-            'captcha' => $this->recaptcha->getWidget(), // menampilkan recaptcha
-            'script_captcha' => $this->recaptcha->getScriptTag() // javascript recaptcha ditaruh di head
+           
 
         );
         $query = $this->db->insert('wp_alternatif', $data);

@@ -39,6 +39,7 @@
 
     <!-- Custom Theme Style -->
     <link href="<?php echo base_url();?>assets/admin/build/css/custom.min.css" rel="stylesheet">
+
 </head>
 
 <body class="nav-md">
@@ -47,7 +48,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="index.html" class="site_title"><i class="fa fa-user"></i> <span>Halaman Admin</span></a>
+                    <a href="index.html" class="site_title"></i> <span>Halaman Admin</span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -55,6 +56,7 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
+                    <img src="<?php echo base_url(); ?>assets/img/admin.png" width="45px" align="right">
 
                     </div>
                     <div class="profile_info">
@@ -73,13 +75,7 @@
                         <ul class="nav side-menu">
                             <li><a href="<?php echo base_url(); ?>admin/index"><i class="fa fa-home"></i>Home</a>
                             </li>
-                            <li><a><i class="fa fa-users"></i> User <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="<?php echo base_url(); ?>admin/tampil_user">Tampil User</a></li>
-                                    <li><a href="<?php echo base_url(); ?>admin/tambah_user">Tambah User</a></li>
-                                </ul>
-                            </li>
-
+                            
                             <li><a><i class="fa fa-sitemap"></i> Data Kriteria<span
                                             class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">

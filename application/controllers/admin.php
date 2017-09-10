@@ -78,14 +78,7 @@ class Admin extends CI_Controller
         redirect('/login');
     }
 
-    public function tampil_user()
-    {
-
-        $data['user'] = $this->mtabel_user->tampil()->result();
-
-        $this->template->load('admin/static_admin', 'admin/tabel_user', $data);
-    }
-
+    
     public function tampil_pegawai()
     {
 
@@ -135,68 +128,7 @@ class Admin extends CI_Controller
     }
 
 
-    public function tambah_user()
-    {
-
-        $this->template->load('admin/static_admin', 'admin/tambah_user');
-
-    }
-
-    public function tambah_userdb()
-    {
-
-        $this->form_validation->set_rules('user', 'username', 'trim|required|min_length[5]|max_length[12]');
-        $this->form_validation->set_rules('pass', 'password', 'trim|required|min_length[5]|max_length[12]');
-        $this->form_validation->set_rules('lev', 'level', 'trim|required|');
-
-        if ($this->form_validation->run() == FALSE) {
-            $this->session->set_flashdata('info', 'Gagal dimasukan');
-            $this->template->load('admin/static_admin', 'admin/tambah_user');
-
-        } else {
-
-            $this->mtabel_user->tambah(); //akses model untuk menyimpan ke database
-            redirect('/admin/tampil_user');
-        }
-
-    }
-
-    public function edit_user($id)
-    {
-
-        $data['user'] = $this->mtabel_user->tampil();
-        $data['single_user'] = $this->mtabel_user->tampil_id($id);
-        $this->template->load('admin/static_admin', 'admin/edit_user', $data);
-
-    }
-
-    public function edit_userdb()
-    {
-        if ($data = $this->input->post()) {
-            $query = $this->mtabel_user->edit($id, $data);
-            $this->mtabel_user->tampil_id();
-            $this->session->set_flashdata('info', 'Data Berhasil diedit');
-            redirect('/admin/tampil_user');
-        } else {
-            $this->session->set_flashdata('info', 'Data Gagal di edit');
-            redirect('/admin/tampil_user');
-        }
-
-    }
-
-    function hapus_user($id)
-    {
-        $this->mtabel_user->hapus($id);
-        if ($this->db->affected_rows()) {
-            $this->session->set_flashdata('info', 'Data Berhasil dihapus');
-            redirect('/admin/tampil_user');
-        } else {
-            $this->session->set_flashdata('info', 'Data Gagal dihapus');
-            redirect('/admin/tampil_user');
-        }
-
-    }
-
+   
     public function tambah_pegawai()
     {
         $this->template->load('admin/static_admin', 'admin/tambah_pegawai');

@@ -40,9 +40,9 @@
                             <div>
  
                             
-                              <a href="<?php echo base_url().'admin/edit_user/'.$us->id;?> ">
+                              <a href="<?php echo base_url().'manajer/edit_user/'.$us->id;?> ">
                               <button class="btn btn-info btn-sm" name="input"><i class="glyphicon glyphicon-pencil"></i></button></a>
-                             <a href="<?php echo base_url().'admin/hapus_user/'.$us->id;?> ">
+                             <a href="<?php echo base_url().'manajer/hapus_user/'.$us->id;?> ">
                                <button class="btn btn-danger btn-sm" name="input" onclick="return confirm('Anda Yakin menghapus data ini?')"><i class="glyphicon glyphicon-trash"></i></button></a></div>   
                               </td>      
 

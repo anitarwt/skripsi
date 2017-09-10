@@ -35,7 +35,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-user"></i> <span>Halaman Manajer</span></a>
+              <a href="index.html" class="site_title"><span>Halaman Manajer</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -43,6 +43,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
             <div class="profile_pic">
+            <img src="<?php echo base_url(); ?>assets/img/manajer.png" width="45px" align="right">
             
                
               </div>
@@ -66,6 +67,13 @@
                 <ul class="nav side-menu">
                  <li><a href="<?php echo base_url(); ?>manajer/index"><i class="fa fa-home"></i>Home <span class=" "></span></a>
                   </li>
+                  <li><a><i class="fa fa-users"></i> User <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="<?php echo base_url(); ?>manajer/tampil_user">Tampil User</a></li>
+                                    <li><a href="<?php echo base_url(); ?>manajer/tambah_user">Tambah User</a></li>
+                                </ul>
+                            </li>
+
                     <li><a href="<?php echo base_url(); ?>manajer/tampil_rangking"><i class="fa fa-file"></i>Laporan</a>
                             </li>
                   

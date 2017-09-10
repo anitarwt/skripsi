@@ -18,7 +18,7 @@
                  <?php if( !empty($user) ) {  ?> 
             <?php foreach ($user as $record): ?>
       
-            <?php echo form_open('admin/edit_userdb'); ?>
+            <?php echo form_open('manajer/edit_userdb'); ?>
           <?php echo validation_errors(); ?>  
            <?php endforeach; ?>     
                <?php } ?> 

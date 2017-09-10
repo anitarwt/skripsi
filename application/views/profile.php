@@ -1,4 +1,5 @@
 
+ <div class="container">
 <style type="text/css">
    .left    { text-align: left;}
    .right   { text-align: right;}
@@ -15,9 +16,9 @@
           
               
             </div>
- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+ <div class="class=col-lg-6 col-md-6 col-sm-6 col-xs-12">
  
- <div class="container">
+
         <div class="registrationform">
         <div class="row">
          

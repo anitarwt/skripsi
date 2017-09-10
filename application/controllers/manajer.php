@@ -9,6 +9,8 @@ class Manajer extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->model('mtabel_kriteria');
 		$this->load->model('mtabel_pegawai');
+        $this->load->model('mtabel_user');
+        $this->load->model('mtabel_nilai');
 
 		if ($this->session->userdata('username')=="") {
 			redirect('/login');
@@ -27,6 +29,79 @@ class Manajer extends CI_Controller {
        $this->template->load('manajer/static_hrd', 'manajer/dashbord_user',$data);
 		
 	}
+
+ public function tambah_user()
+    {
+
+        $this->template->load('manajer/static_hrd', 'manajer/tambah_user');
+
+    }
+
+    public function tambah_userdb()
+    {
+
+        $this->form_validation->set_rules('user', 'username', 'trim|required|min_length[5]|max_length[12]');
+        $this->form_validation->set_rules('pass', 'password', 'trim|required|min_length[5]|max_length[12]');
+        $this->form_validation->set_rules('lev', 'level', 'trim|required|');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->session->set_flashdata('info', 'Gagal dimasukan');
+            $this->template->load('manajer/static_hrd', 'manajer/tambah_user');
+
+        } else {
+
+            $this->mtabel_user->tambah(); //akses model untuk menyimpan ke database
+            redirect('/manajer/tabel_user');
+        }
+
+    }
+
+    public function edit_user($id)
+    {
+
+        $data['user'] = $this->mtabel_user->tampil();
+        $data['single_user'] = $this->mtabel_user->tampil_id($id);
+        $this->template->load('manajer/static_hrd', 'manajer/edit_user', $data);
+
+    }
+
+    public function edit_userdb()
+    {
+        if ($data = $this->input->post()) {
+            $query = $this->mtabel_user->edit($id, $data);
+            $this->mtabel_user->tampil_id();
+            $this->session->set_flashdata('info', 'Data Berhasil diedit');
+            redirect('/manajer/tabel_user');
+        } else {
+            $this->session->set_flashdata('info', 'Data Gagal di edit');
+            redirect('/manajer/tabel_user');
+        }
+
+    }
+
+    public function tampil_user()
+    {
+
+        $data['user'] = $this->mtabel_user->tampil()->result();
+
+        $this->template->load('manajer/static_hrd', 'manajer/tabel_user', $data);
+    }
+
+
+    function hapus_user($id)
+    {
+        $this->mtabel_user->hapus($id);
+        if ($this->db->affected_rows()) {
+            $this->session->set_flashdata('info', 'Data Berhasil dihapus');
+            redirect('/manajer/tabel_user');
+        } else {
+            $this->session->set_flashdata('info', 'Data Gagal dihapus');
+            redirect('/manajer/tabel_user');
+        }
+
+    }
+
+
 
 public function logout() {
 		$this->session->unset_userdata('username');
